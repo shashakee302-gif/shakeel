@@ -73,27 +73,27 @@ const Portfolio: React.FC = () => {
   const templates = [
     {
       id: 0,
-      name: "Modern Minimal",
-      description: "Clean and professional design with focus on content",
-      image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=400",
-      color: "from-blue-500 to-cyan-500",
-      features: ["Responsive Design", "Dark Mode", "Fast Loading", "SEO Optimized"]
+      name: "Cyberpunk Matrix",
+      description: "Futuristic cyberpunk design with matrix rain, glitch effects, and neon aesthetics",
+      image: "https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&w=400",
+      color: "from-green-400 to-cyan-400",
+      features: ["Matrix Rain Effect", "Custom Cursor", "Glitch Animations", "Neon Glow", "Hexagonal Grid"]
     },
     {
       id: 1,
-      name: "Creative Portfolio",
-      description: "Bold and creative design for designers and artists",
-      image: "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=400",
+      name: "Holographic Nexus",
+      description: "Interdimensional holographic design with morphing elements and particle systems",
+      image: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=400",
       color: "from-purple-500 to-pink-500",
-      features: ["Animated Sections", "Gallery View", "Creative Layouts", "Interactive Elements"]
+      features: ["Holographic Effects", "Morphing Cards", "Particle System", "3D Transforms", "Liquid Animations"]
     },
     {
       id: 2,
-      name: "Developer Focus",
-      description: "Technical portfolio perfect for developers and engineers",
-      image: "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg?auto=compress&cs=tinysrgb&w=400",
-      color: "from-emerald-500 to-teal-500",
-      features: ["Code Snippets", "Project Showcase", "Tech Stack Display", "GitHub Integration"]
+      name: "Quantum Dimension",
+      description: "Multidimensional quantum-inspired design with geometric shapes and energy waves",
+      image: "https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&w=400",
+      color: "from-red-500 to-yellow-500",
+      features: ["Quantum Effects", "Geometric Animations", "Energy Waves", "Dimensional Cards", "Spiral Layout"]
     }
   ];
 
@@ -142,9 +142,9 @@ const Portfolio: React.FC = () => {
         loadResumeData();
       }
       
-      const templateNames = ['modern', 'creative', 'developer'];
+      const templateNames = ['cyberpunk', 'holographic', 'quantum'];
       downloadPortfolio(portfolioData, templateNames[selectedTemplate]);
-      toast.success('Portfolio HTML downloaded successfully! Upload to GitHub Pages to make it live.');
+      toast.success(`🚀 ${templates[selectedTemplate].name} portfolio downloaded! This is next-level stuff!`);
     } catch (error) {
       toast.error('Error generating portfolio. Please try again.');
       console.error('Portfolio generation error:', error);
@@ -153,7 +153,7 @@ const Portfolio: React.FC = () => {
 
   const handlePreviewPortfolio = () => {
     try {
-      const templateNames = ['modern', 'creative', 'developer'];
+      const templateNames = ['cyberpunk', 'holographic', 'quantum'];
       const htmlContent = generateGitHubPages(portfolioData, templateNames[selectedTemplate]);
       
       // Open preview in new window
@@ -161,7 +161,7 @@ const Portfolio: React.FC = () => {
       if (previewWindow) {
         previewWindow.document.write(htmlContent);
         previewWindow.document.close();
-        toast.success('Portfolio preview opened in new tab!');
+        toast.success(`🎨 ${templates[selectedTemplate].name} preview opened! Prepare to be amazed!`);
       }
     } catch (error) {
       toast.error('Error previewing portfolio. Please try again.');
@@ -618,7 +618,7 @@ const Portfolio: React.FC = () => {
           >
             <div className={`${getDeviceClasses()} bg-white dark:bg-gray-800 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden transition-all duration-300`}>
               <iframe
-                srcDoc={generateGitHubPages(portfolioData, ['modern', 'creative', 'developer'][selectedTemplate])}
+                srcDoc={generateGitHubPages(portfolioData, ['cyberpunk', 'holographic', 'quantum'][selectedTemplate])}
                 className="w-full h-full border-0"
                 title="Portfolio Live Preview"
                 sandbox="allow-scripts allow-same-origin"
