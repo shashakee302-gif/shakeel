@@ -1,0 +1,9 @@
+[
+  { "filename": "export (1).json", "style": "2", "preview": "export (1).png" },
+  { "filename": "export (2).json", "style": "4", "preview": "export (2).png" },
+  { "filename": "export (3).json", "style": "6", "preview": "export (3).png" },
+  { "filename": "export (4).json", "style": "8", "preview": "export (4).png" },
+  { "filename": "export (5).json", "style": "10", "preview": "export (5).png" },
+  { "filename": "export (6).json", "style": "12", "preview": "export (6).png" },
+  { "filename": "export.json", "style": "2", "preview": "export.png" }
+] 

@@ -1,0 +1,786 @@
+{
+  "filename": "side-bar-rtl.pdf",
+  "page_data": [
+    {
+      "page": 0,
+      "image_url": "https://images.nanonets.com/tr:rt-0/uploadedfiles/rawocr/d211053c-105d-481b-b66c-3e256bfc241e-1.jpeg?ik-s=91b5b3d1c6badc01c59e4756890b4563a5b46b3e&ik-t=1750977274",
+      "size": {
+        "width": 2479,
+        "height": 3508
+      },
+      "words": [
+        {
+          "text": "JO",
+          "xmin": 719,
+          "ymin": 348,
+          "xmax": 990,
+          "ymax": 457
+        },
+        {
+          "text": "H",
+          "xmin": 986,
+          "ymin": 348,
+          "xmax": 1074,
+          "ymax": 460
+        },
+        {
+          "text": "N",
+          "xmin": 1133,
+          "ymin": 348,
+          "xmax": 1227,
+          "ymax": 444
+        },
+        {
+          "text": "DO",
+          "xmin": 1358,
+          "ymin": 348,
+          "xmax": 1664,
+          "ymax": 458
+        },
+        {
+          "text": "E",
+          "xmin": 1652,
+          "ymin": 348,
+          "xmax": 1722,
+          "ymax": 451
+        },
+        {
+          "text": "Software",
+          "xmin": 871,
+          "ymin": 506,
+          "xmax": 1185,
+          "ymax": 544
+        },
+        {
+          "text": "Developer",
+          "xmin": 1234,
+          "ymin": 507,
+          "xmax": 1594,
+          "ymax": 555
+        },
+        {
+          "text": "EXPERIENCE",
+          "xmin": 921,
+          "ymin": 883,
+          "xmax": 1418,
+          "ymax": 925
+        },
+        {
+          "text": "COMPANY",
+          "xmin": 746,
+          "ymin": 1011,
+          "xmax": 1095,
+          "ymax": 1054
+        },
+        {
+          "text": "|",
+          "xmin": 1117,
+          "ymin": 1035,
+          "xmax": 1132,
+          "ymax": 1039
+        },
+        {
+          "text": "Developer",
+          "xmin": 1156,
+          "ymin": 1011,
+          "xmax": 1437,
+          "ymax": 1064
+        },
+        {
+          "text": "since",
+          "xmin": 999,
+          "ymin": 1084,
+          "xmax": 1116,
+          "ymax": 1122
+        },
+        {
+          "text": "January",
+          "xmin": 1131,
+          "ymin": 1086,
+          "xmax": 1314,
+          "ymax": 1131
+        },
+        {
+          "text": "2016",
+          "xmin": 1331,
+          "ymin": 1085,
+          "xmax": 1433,
+          "ymax": 1121
+        },
+        {
+          "text": "Programming",
+          "xmin": 422,
+          "ymin": 1144,
+          "xmax": 747,
+          "ymax": 1193
+        },
+        {
+          "text": "and",
+          "xmin": 765,
+          "ymin": 1145,
+          "xmax": 847,
+          "ymax": 1182
+        },
+        {
+          "text": "watching",
+          "xmin": 865,
+          "ymin": 1144,
+          "xmax": 1069,
+          "ymax": 1191
+        },
+        {
+          "text": "cute",
+          "xmin": 1087,
+          "ymin": 1146,
+          "xmax": 1188,
+          "ymax": 1182
+        },
+        {
+          "text": "cat",
+          "xmin": 1203,
+          "ymin": 1146,
+          "xmax": 1273,
+          "ymax": 1182
+        },
+        {
+          "text": "videos",
+          "xmin": 1287,
+          "ymin": 1144,
+          "xmax": 1436,
+          "ymax": 1182
+        },
+        {
+          "text": "COMPANY",
+          "xmin": 483,
+          "ymin": 1239,
+          "xmax": 799,
+          "ymax": 1281
+        },
+        {
+          "text": "B",
+          "xmin": 799,
+          "ymin": 1239,
+          "xmax": 828,
+          "ymax": 1280
+        },
+        {
+          "text": "|",
+          "xmin": 854,
+          "ymin": 1263,
+          "xmax": 869,
+          "ymax": 1268
+        },
+        {
+          "text": "Frontend",
+          "xmin": 893,
+          "ymin": 1238,
+          "xmax": 1130,
+          "ymax": 1281
+        },
+        {
+          "text": "Developer",
+          "xmin": 1156,
+          "ymin": 1239,
+          "xmax": 1436,
+          "ymax": 1290
+        },
+        {
+          "text": "|",
+          "xmin": 1934,
+          "ymin": 1296,
+          "xmax": 1966,
+          "ymax": 1314
+        },
+        {
+          "text": "January",
+          "xmin": 723,
+          "ymin": 1315,
+          "xmax": 908,
+          "ymax": 1358
+        },
+        {
+          "text": "2015",
+          "xmin": 924,
+          "ymin": 1320,
+          "xmax": 1026,
+          "ymax": 1358
+        },
+        {
+          "text": "|",
+          "xmin": 1044,
+          "ymin": 1335,
+          "xmax": 1058,
+          "ymax": 1339
+        },
+        {
+          "text": "December",
+          "xmin": 1079,
+          "ymin": 1313,
+          "xmax": 1318,
+          "ymax": 1351
+        },
+        {
+          "text": "2015",
+          "xmin": 1335,
+          "ymin": 1320,
+          "xmax": 1436,
+          "ymax": 1358
+        },
+        {
+          "text": "Fulfillment",
+          "xmin": 526,
+          "ymin": 1372,
+          "xmax": 766,
+          "ymax": 1410
+        },
+        {
+          "text": "of",
+          "xmin": 780,
+          "ymin": 1372,
+          "xmax": 828,
+          "ymax": 1410
+        },
+        {
+          "text": "extremely",
+          "xmin": 840,
+          "ymin": 1359,
+          "xmax": 1067,
+          "ymax": 1419
+        },
+        {
+          "text": "important",
+          "xmin": 1086,
+          "ymin": 1373,
+          "xmax": 1307,
+          "ymax": 1419
+        },
+        {
+          "text": "tasks",
+          "xmin": 1320,
+          "ymin": 1372,
+          "xmax": 1436,
+          "ymax": 1410
+        },
+        {
+          "text": "COMPANY",
+          "xmin": 834,
+          "ymin": 1467,
+          "xmax": 1147,
+          "ymax": 1509
+        },
+        {
+          "text": "C",
+          "xmin": 1146,
+          "ymin": 1467,
+          "xmax": 1223,
+          "ymax": 1509
+        },
+        {
+          "text": "Trainee",
+          "xmin": 1239,
+          "ymin": 1467,
+          "xmax": 1437,
+          "ymax": 1510
+        },
+        {
+          "text": "March",
+          "xmin": 767,
+          "ymin": 1541,
+          "xmax": 908,
+          "ymax": 1579
+        },
+        {
+          "text": ".Making",
+          "xmin": 653,
+          "ymin": 1579,
+          "xmax": 822,
+          "ymax": 1649
+        },
+        {
+          "text": "2014",
+          "xmin": 924,
+          "ymin": 1548,
+          "xmax": 1027,
+          "ymax": 1583
+        },
+        {
+          "text": "|",
+          "xmin": 1045,
+          "ymin": 1563,
+          "xmax": 1055,
+          "ymax": 1567
+        },
+        {
+          "text": "December",
+          "xmin": 1079,
+          "ymin": 1541,
+          "xmax": 1319,
+          "ymax": 1579
+        },
+        {
+          "text": "2014",
+          "xmin": 1334,
+          "ymin": 1549,
+          "xmax": 1436,
+          "ymax": 1583
+        },
+        {
+          "text": "coffee",
+          "xmin": 840,
+          "ymin": 1600,
+          "xmax": 983,
+          "ymax": 1638
+        },
+        {
+          "text": "and",
+          "xmin": 996,
+          "ymin": 1600,
+          "xmax": 1079,
+          "ymax": 1638
+        },
+        {
+          "text": "baking",
+          "xmin": 1098,
+          "ymin": 1600,
+          "xmax": 1244,
+          "ymax": 1646
+        },
+        {
+          "text": "cookies",
+          "xmin": 1262,
+          "ymin": 1600,
+          "xmax": 1436,
+          "ymax": 1638
+        },
+        {
+          "text": "CONTACT",
+          "xmin": 1765,
+          "ymin": 1727,
+          "xmax": 2136,
+          "ymax": 1769
+        },
+        {
+          "text": "EDUCATION",
+          "xmin": 955,
+          "ymin": 1821,
+          "xmax": 1415,
+          "ymax": 1862
+        },
+        {
+          "text": "MASTER",
+          "xmin": 937,
+          "ymin": 1945,
+          "xmax": 1174,
+          "ymax": 1988
+        },
+        {
+          "text": "OF",
+          "xmin": 1194,
+          "ymin": 1945,
+          "xmax": 1267,
+          "ymax": 1988
+        },
+        {
+          "text": "ARTS",
+          "xmin": 1287,
+          "ymin": 1945,
+          "xmax": 1435,
+          "ymax": 1988
+        },
+        {
+          "text": "john.doe@email.com",
+          "xmin": 1657,
+          "ymin": 1947,
+          "xmax": 2246,
+          "ymax": 1994
+        },
+        {
+          "text": "Maior",
+          "xmin": 420,
+          "ymin": 2011,
+          "xmax": 550,
+          "ymax": 2048
+        },
+        {
+          "text": "in",
+          "xmin": 567,
+          "ymin": 2011,
+          "xmax": 599,
+          "ymax": 2047
+        },
+        {
+          "text": "Hacking",
+          "xmin": 617,
+          "ymin": 2011,
+          "xmax": 797,
+          "ymax": 2057
+        },
+        {
+          "text": "and",
+          "xmin": 815,
+          "ymin": 2010,
+          "xmax": 897,
+          "ymax": 2048
+        },
+        {
+          "text": "Computer",
+          "xmin": 915,
+          "ymin": 2011,
+          "xmax": 1150,
+          "ymax": 2057
+        },
+        {
+          "text": "Penetration",
+          "xmin": 1167,
+          "ymin": 2011,
+          "xmax": 1424,
+          "ymax": 2048
+        },
+        {
+          "text": "University",
+          "xmin": 779,
+          "ymin": 2055,
+          "xmax": 1014,
+          "ymax": 2118
+        },
+        {
+          "text": "A",
+          "xmin": 1031,
+          "ymin": 2071,
+          "xmax": 1062,
+          "ymax": 2107
+        },
+        {
+          "text": "New",
+          "xmin": 1092,
+          "ymin": 2071,
+          "xmax": 1194,
+          "ymax": 2107
+        },
+        {
+          "text": "York",
+          "xmin": 1209,
+          "ymin": 2070,
+          "xmax": 1311,
+          "ymax": 2106
+        },
+        {
+          "text": "USA",
+          "xmin": 1339,
+          "ymin": 2070,
+          "xmax": 1435,
+          "ymax": 2106
+        },
+        {
+          "text": "BACHELOR",
+          "xmin": 762,
+          "ymin": 2164,
+          "xmax": 1070,
+          "ymax": 2207
+        },
+        {
+          "text": "OF",
+          "xmin": 1091,
+          "ymin": 2164,
+          "xmax": 1163,
+          "ymax": 2207
+        },
+        {
+          "text": "SCIENCE",
+          "xmin": 1185,
+          "ymin": 2164,
+          "xmax": 1435,
+          "ymax": 2207
+        },
+        {
+          "text": "0123",
+          "xmin": 1783,
+          "ymin": 2158,
+          "xmax": 1901,
+          "ymax": 2193
+        },
+        {
+          "text": "456789",
+          "xmin": 1931,
+          "ymin": 2151,
+          "xmax": 2133,
+          "ymax": 2194
+        },
+        {
+          "text": "Maior",
+          "xmin": 227,
+          "ymin": 2229,
+          "xmax": 364,
+          "ymax": 2268
+        },
+        {
+          "text": "in",
+          "xmin": 382,
+          "ymin": 2229,
+          "xmax": 414,
+          "ymax": 2266
+        },
+        {
+          "text": "Engineering",
+          "xmin": 432,
+          "ymin": 2230,
+          "xmax": 697,
+          "ymax": 2278
+        },
+        {
+          "text": "University",
+          "xmin": 729,
+          "ymin": 2230,
+          "xmax": 951,
+          "ymax": 2274
+        },
+        {
+          "text": "B",
+          "xmin": 970,
+          "ymin": 2230,
+          "xmax": 998,
+          "ymax": 2266
+        },
+        {
+          "text": "|",
+          "xmin": 1000,
+          "ymin": 2236,
+          "xmax": 1008,
+          "ymax": 2258
+        },
+        {
+          "text": "Los",
+          "xmin": 1004,
+          "ymin": 2230,
+          "xmax": 1108,
+          "ymax": 2268
+        },
+        {
+          "text": "Angeles",
+          "xmin": 1124,
+          "ymin": 2230,
+          "xmax": 1308,
+          "ymax": 2278
+        },
+        {
+          "text": "USA",
+          "xmin": 1339,
+          "ymin": 2230,
+          "xmax": 1435,
+          "ymax": 2267
+        },
+        {
+          "text": "1234",
+          "xmin": 1733,
+          "ymin": 2362,
+          "xmax": 1851,
+          "ymax": 2399
+        },
+        {
+          "text": "Broadway",
+          "xmin": 1882,
+          "ymin": 2355,
+          "xmax": 2160,
+          "ymax": 2403
+        },
+        {
+          "text": "New",
+          "xmin": 1827,
+          "ymin": 2414,
+          "xmax": 1939,
+          "ymax": 2451
+        },
+        {
+          "text": "York",
+          "xmin": 1969,
+          "ymin": 2414,
+          "xmax": 2090,
+          "ymax": 2451
+        },
+        {
+          "text": "IS",
+          "xmin": 1150,
+          "ymin": 2450,
+          "xmax": 1209,
+          "ymax": 2492
+        },
+        {
+          "text": "KILLS",
+          "xmin": 1206,
+          "ymin": 2450,
+          "xmax": 1419,
+          "ymax": 2492
+        },
+        {
+          "text": "A",
+          "xmin": 1897,
+          "ymin": 2530,
+          "xmax": 1902,
+          "ymax": 2533
+        },
+        {
+          "text": "https://g",
+          "xmin": 1641,
+          "ymin": 2616,
+          "xmax": 1900,
+          "ymax": 2662
+        },
+        {
+          "text": "ithub.com/johnyD",
+          "xmin": 1900,
+          "ymin": 2616,
+          "xmax": 2413,
+          "ymax": 2662
+        },
+        {
+          "text": "Nodeis",
+          "xmin": 409,
+          "ymin": 2684,
+          "xmax": 545,
+          "ymax": 2716
+        },
+        {
+          "text": "JavaScript",
+          "xmin": 654,
+          "ymin": 2684,
+          "xmax": 848,
+          "ymax": 2719
+        },
+        {
+          "text": "CSS3",
+          "xmin": 977,
+          "ymin": 2685,
+          "xmax": 1074,
+          "ymax": 2720
+        },
+        {
+          "text": "HTML5",
+          "xmin": 1236,
+          "ymin": 2685,
+          "xmax": 1369,
+          "ymax": 2719
+        },
+        {
+          "text": "Docker",
+          "xmin": 410,
+          "ymin": 2960,
+          "xmax": 542,
+          "ymax": 2990
+        },
+        {
+          "text": "ES.Next",
+          "xmin": 681,
+          "ymin": 2960,
+          "xmax": 824,
+          "ymax": 2990
+        },
+        {
+          "text": "TypeScript",
+          "xmin": 926,
+          "ymin": 2959,
+          "xmax": 1128,
+          "ymax": 2995
+        },
+        {
+          "text": "Angular",
+          "xmin": 1209,
+          "ymin": 2960,
+          "xmax": 1389,
+          "ymax": 2995
+        },
+        {
+          "text": "Also",
+          "xmin": 280,
+          "ymin": 3198,
+          "xmax": 379,
+          "ymax": 3236
+        },
+        {
+          "text": "proficient",
+          "xmin": 398,
+          "ymin": 3198,
+          "xmax": 610,
+          "ymax": 3244
+        },
+        {
+          "text": "in",
+          "xmin": 626,
+          "ymin": 3199,
+          "xmax": 659,
+          "ymax": 3235
+        },
+        {
+          "text": "Adobe",
+          "xmin": 674,
+          "ymin": 3198,
+          "xmax": 829,
+          "ymax": 3236
+        },
+        {
+          "text": "Photoshop",
+          "xmin": 845,
+          "ymin": 3198,
+          "xmax": 1093,
+          "ymax": 3244
+        },
+        {
+          "text": "and",
+          "xmin": 1109,
+          "ymin": 3198,
+          "xmax": 1192,
+          "ymax": 3236
+        },
+        {
+          "text": "Illustrator",
+          "xmin": 1211,
+          "ymin": 3199,
+          "xmax": 1430,
+          "ymax": 3236
+        },
+        {
+          "text": "(grew",
+          "xmin": 544,
+          "ymin": 3258,
+          "xmax": 679,
+          "ymax": 3305
+        },
+        {
+          "text": "up",
+          "xmin": 697,
+          "ymin": 3268,
+          "xmax": 755,
+          "ymax": 3301
+        },
+        {
+          "text": "bilingual",
+          "xmin": 773,
+          "ymin": 3257,
+          "xmax": 964,
+          "ymax": 3304
+        },
+        {
+          "text": "(English",
+          "xmin": 977,
+          "ymin": 3257,
+          "xmax": 1153,
+          "ymax": 3305
+        },
+        {
+          "text": "and",
+          "xmin": 1168,
+          "ymin": 3257,
+          "xmax": 1251,
+          "ymax": 3295
+        },
+        {
+          "text": "Klingon",
+          "xmin": 1270,
+          "ymin": 3257,
+          "xmax": 1437,
+          "ymax": 3305
+        }
+      ],
+      "raw_text": "JO H N DO E Software Developer EXPERIENCE COMPANY | Developer since January 2016 Programming and watching cute cat videos COMPANY B | Frontend Developer | January 2015 | December 2015 Fulfillment of extremely important tasks COMPANY C Trainee March .Making 2014 | December 2014 coffee and baking cookies CONTACT EDUCATION MASTER OF ARTS john.doe@email.com Maior in Hacking and Computer Penetration University A New York USA BACHELOR OF SCIENCE 0123 456789 Maior in Engineering University B | Los Angeles USA 1234 Broadway New York IS KILLS A https://g ithub.com/johnyD Nodeis JavaScript CSS3 HTML5 Docker ES.Next TypeScript Angular Also proficient in Adobe Photoshop and Illustrator (grew up bilingual (English and Klingon "
+    }
+  ]
+}
