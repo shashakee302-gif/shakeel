@@ -195,111 +195,182 @@ const ResumeImporter: React.FC<ResumeImporterProps> = ({ onDataImported, onClose
       resumeData.personalInfo.linkedin = linkedinUrl.startsWith('http') ? linkedinUrl : `https://${linkedinUrl}`;
     }
 
+    // Extract GitHub (improved pattern)
+    const githubMatch = cleanText.match(/(github\.com\/[a-zA-Z0-9\-]+)|(GitHub:\s*[a-zA-Z0-9\-]+)|(@?[a-zA-Z0-9\-]+\s*github)/i);
     if (githubMatch) {
-      const match = githubMatch[0].includes('github.com') 
-        ? githubMatch[0] 
-        : `github.com/${githubMatch[0].replace('GitHub:', '').trim()}`;
-      resumeData.personalInfo.github = match.startsWith('http') ? match : `https://${match}`;
+      let githubUrl = githubMatch[0];
+      if (!githubUrl.includes('github.com')) {
+        githubUrl = `github.com/${githubUrl.replace('@', '').replace(/github:?/i, '').trim()}`;
+      }
+      resumeData.personalInfo.github = githubUrl.startsWith('http') ? githubUrl : `https://${githubUrl}`;
     }
 
-    // Extract name (improved pattern)
+    // Extract name (much improved pattern)
     const namePatterns = [
-      /^[A-Z][a-z]+ [A-Z][a-z]+(?: [A-Z][a-z]+)?$/m, // First Last or First Middle Last
-      /(?:^|\n)[A-Z][a-z]+ [A-Z]\.? [A-Z][a-z]+/, // First M. Last
-      /(?:^|\n)[A-Z][a-z]+, [A-Z][a-z]+(?: [A-Z][a-z]+)?/ // Last, First
+      /^[A-Z][a-z]+ [A-Z][a-z]+(?: [A-Z][a-z]+)?$/m,
+      /(?:^|\n)\s*([A-Z][a-z]+ [A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s*$/m,
+      /(?:^|\n)\s*([A-Z][a-z]+\s+[A-Z]\.?\s+[A-Z][a-z]+)/,
+      /(?:^|\n)\s*([A-Z][a-z]+,\s*[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/,
+      /Name:\s*([A-Z][a-z]+\s+[A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/i,
+      /^([A-Z][A-Z\s]+)$/m // All caps name
     ];
     
     for (const pattern of namePatterns) {
-      const match = text.match(pattern);
+      const match = cleanText.match(pattern);
       if (match) {
-        resumeData.personalInfo.name = match[0].replace(/^\n/, '').trim();
+        let name = (match[1] || match[0]).replace(/^\n/, '').replace(/Name:\s*/i, '').trim();
+        // Convert all caps to proper case
+        if (name === name.toUpperCase()) {
+          name = name.toLowerCase().replace(/\b\w/g, l => l.toUpperCase());
+        }
+        resumeData.personalInfo.name = name;
         break;
       }
     }
 
-    // Extract location (city, state, or country)
-    const locationMatch = text.match(/(?:[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*,?\s*(?:[A-Z]{2}\b|\b(?:USA|United States|Canada|UK|United Kingdom)\b))/);
-    if (locationMatch) resumeData.personalInfo.location = locationMatch[0];
+    // Extract location (improved for Indian cities)
+    const locationPatterns = [
+      /(?:Address|Location):\s*([^,\n]+(?:,\s*[^,\n]+)*)/i,
+      /(?:Mumbai|Delhi|Bangalore|Bengaluru|Chennai|Kolkata|Hyderabad|Pune|Ahmedabad|Jaipur|Lucknow|Kanpur|Nagpur|Indore|Thane|Bhopal|Visakhapatnam|Pimpri|Patna|Vadodara|Ghaziabad|Ludhiana|Agra|Nashik|Faridabad|Meerut|Rajkot|Kalyan|Vasai|Varanasi|Srinagar|Aurangabad|Dhanbad|Amritsar|Navi Mumbai|Allahabad|Ranchi|Howrah|Coimbatore|Jabalpur|Gwalior|Vijayawada|Jodhpur|Madurai|Raipur|Kota|Guwahati|Chandigarh|Solapur|Hubballi|Tiruchirappalli|Bareilly|Mysore|Tiruppur|Gurgaon|Aligarh|Jalandhar|Bhubaneswar|Salem|Warangal|Guntur|Bhiwandi|Saharanpur|Gorakhpur|Bikaner|Amravati|Noida|Jamshedpur|Bhilai|Cuttack|Firozabad|Kochi|Nellore|Bhavnagar|Dehradun|Durgapur|Asansol|Rourkela|Nanded|Kolhapur|Ajmer|Akola|Gulbarga|Jamnagar|Ujjain|Loni|Siliguri|Jhansi|Ulhasnagar|Jammu|Sangli-Miraj|Mangalore|Erode|Belgaum|Ambattur|Tirunelveli|Malegaon|Gaya|Jalgaon|Udaipur|Maheshtala)[^,\n]*(?:,\s*[^,\n]+)*/i,
+      /(?:[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*,?\s*(?:[A-Z]{2}\b|\b(?:India|USA|United States|Canada|UK|United Kingdom|Australia|Germany|Singapore)\b))/,
+      /(?:City|State|Country):\s*([^,\n]+)/i
+    ];
+    
+    for (const pattern of locationPatterns) {
+      const locationMatch = cleanText.match(pattern);
+      if (locationMatch) {
+        resumeData.personalInfo.location = (locationMatch[1] || locationMatch[0]).trim();
+        break;
+      }
+    }
 
-    // Extract summary
+    // Extract summary (much improved)
     const summaryPatterns = [
-      /(?:summary|objective|profile)[:\s]*([^]+?)(?=\n\s*\n|\n\s*[A-Z][^a-z]|\n\s*[a-z]+\s*:)/i,
-      /(?:^|\n)\s*([A-Z][^.!?]{50,300}[.!?])(?=\n\s*\n|\n\s*[A-Z][^a-z])/
+      /(?:Professional\s+Summary|Summary|Objective|Profile|About\s+Me)[:\s]*([^]+?)(?=\n\s*(?:Experience|Education|Skills|Projects|Work|Employment))/i,
+      /(?:^|\n)\s*([A-Z][^.!?]{80,400}[.!?])(?=\n\s*\n|\n\s*(?:Experience|Education|Skills))/,
+      /(?:Summary|Objective)[:\s]*([^]+?)(?=\n\s*\n)/i
     ];
     
     for (const pattern of summaryPatterns) {
-      const match = text.match(pattern);
-      if (match && match[1] && match[1].length > 30) {
-        resumeData.personalInfo.summary = match[1].trim();
+      const match = cleanText.match(pattern);
+      if (match && match[1] && match[1].length > 50) {
+        resumeData.personalInfo.summary = match[1].trim().replace(/\s+/g, ' ');
         break;
       }
     }
 
-    // Extract skills (expanded list)
+    // Extract skills (massively expanded list)
     const commonSkills = [
-      'JavaScript', 'TypeScript', 'Python', 'Java', 'C#', 'C++', 'PHP', 'Ruby', 'Go', 'Swift', 'Kotlin',
-      'React', 'Angular', 'Vue', 'Svelte', 'Next.js', 'Nuxt.js', 'Node.js', 'Express', 'Django', 'Flask',
-      'Spring', 'Laravel', 'Ruby on Rails', 'jQuery', 'Bootstrap', 'Tailwind CSS', 'SASS', 'LESS',
-      'HTML', 'CSS', 'REST', 'GraphQL', 'gRPC', 'MySQL', 'PostgreSQL', 'MongoDB', 'Redis', 'SQLite',
-      'Firebase', 'AWS', 'Azure', 'Google Cloud', 'Docker', 'Kubernetes', 'Jenkins', 'Git', 'CI/CD',
-      'Agile', 'Scrum', 'TDD', 'DevOps', 'Machine Learning', 'Data Science', 'TensorFlow', 'PyTorch'
+      // Programming Languages
+      'JavaScript', 'TypeScript', 'Python', 'Java', 'C#', 'C++', 'PHP', 'Ruby', 'Go', 'Swift', 'Kotlin', 'Rust', 'Scala', 'R', 'MATLAB', 'Perl', 'Dart', 'Elixir', 'Clojure', 'F#',
+      // Frontend Frameworks
+      'React', 'Angular', 'Vue', 'Svelte', 'Next.js', 'Nuxt.js', 'Gatsby', 'Ember.js', 'Backbone.js', 'Alpine.js', 'Lit', 'Stencil',
+      // Backend Frameworks
+      'Node.js', 'Express', 'Django', 'Flask', 'FastAPI', 'Spring', 'Spring Boot', 'Laravel', 'Ruby on Rails', 'ASP.NET', 'Gin', 'Echo', 'Fiber',
+      // CSS & Styling
+      'CSS', 'SCSS', 'SASS', 'LESS', 'Stylus', 'Tailwind CSS', 'Bootstrap', 'Material-UI', 'Ant Design', 'Chakra UI', 'Styled Components', 'Emotion',
+      // Databases
+      'MySQL', 'PostgreSQL', 'MongoDB', 'Redis', 'SQLite', 'Oracle', 'SQL Server', 'Cassandra', 'DynamoDB', 'Neo4j', 'InfluxDB', 'CouchDB',
+      // Cloud & DevOps
+      'AWS', 'Azure', 'Google Cloud', 'Docker', 'Kubernetes', 'Jenkins', 'GitLab CI', 'GitHub Actions', 'Terraform', 'Ansible', 'Vagrant', 'Helm',
+      // Tools & Technologies
+      'Git', 'SVN', 'Webpack', 'Vite', 'Rollup', 'Parcel', 'Babel', 'ESLint', 'Prettier', 'Jest', 'Cypress', 'Selenium', 'Postman', 'Insomnia',
+      // Mobile Development
+      'React Native', 'Flutter', 'Ionic', 'Xamarin', 'Cordova', 'PhoneGap', 'NativeScript',
+      // Data Science & AI
+      'Machine Learning', 'Deep Learning', 'Data Science', 'TensorFlow', 'PyTorch', 'Keras', 'Scikit-learn', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Jupyter',
+      // Methodologies
+      'Agile', 'Scrum', 'Kanban', 'TDD', 'BDD', 'DevOps', 'CI/CD', 'Microservices', 'REST', 'GraphQL', 'gRPC', 'SOAP',
+      // Design & UX
+      'Figma', 'Sketch', 'Adobe XD', 'Photoshop', 'Illustrator', 'InDesign', 'After Effects', 'Blender', 'UI/UX', 'User Research', 'Wireframing', 'Prototyping',
+      // Business & Soft Skills
+      'Project Management', 'Team Leadership', 'Communication', 'Problem Solving', 'Critical Thinking', 'Analytical Skills', 'Creativity', 'Adaptability',
+      // Emerging Technologies
+      'Blockchain', 'Web3', 'Cryptocurrency', 'NFT', 'AR/VR', 'IoT', 'Edge Computing', 'Quantum Computing', 'Cybersecurity'
     ];
     
     const foundSkills: string[] = [];
     for (const skill of commonSkills) {
-      // Case-insensitive match with word boundaries
-      const regex = new RegExp(`\\b${skill}\\b`, 'i');
-      if (regex.test(text) && !foundSkills.some(s => s.toLowerCase() === skill.toLowerCase())) {
+      const regex = new RegExp(`\\b${skill.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\b`, 'i');
+      if (regex.test(cleanText) && !foundSkills.some(s => s.toLowerCase() === skill.toLowerCase())) {
         foundSkills.push(skill);
       }
     }
     resumeData.skills = foundSkills;
 
-    // Extract experience (improved pattern)
+    // Extract experience (significantly improved)
     const experiencePatterns = [
-      /([^•\n]+?)\s*[-–—]\s*([^•\n]+?)\s*[-–—]\s*([^•\n]+?)\s*[-–—]\s*([^•\n]*?(?:\n.*?)*?)(?=\n\s*(?:[A-Z][^a-z]|$))/g,
-      /([^•\n]+?)\s*at\s*([^•\n]+?)\s*[-–—]\s*([^•\n]+?)(?:\n.*?)*?(?=\n\s*(?:[A-Z][^a-z]|$))/g,
-      /(.*?)\n(.*?)\n(.*?)\n(.*?(?:\n.*?)*?)(?=\n\s*\n)/g
+      /(?:^|\n)\s*([^•\n]+?)\s*[-–—|]\s*([^•\n]+?)\s*[-–—|]\s*([^•\n]+?)(?:\n([^]+?))?(?=\n\s*(?:[A-Z][^a-z]|$))/gm,
+      /(?:^|\n)\s*([^•\n]+?)\s+at\s+([^•\n]+?)\s*[-–—|]\s*([^•\n]+?)(?:\n([^]+?))?(?=\n\s*(?:[A-Z][^a-z]|$))/gm,
+      /(?:Position|Role|Job):\s*([^,\n]+),?\s*(?:Company|Organization):\s*([^,\n]+),?\s*(?:Duration|Period):\s*([^,\n]+)/gi
     ];
     
-    const experienceSection = text.match(/experience[\s\S]*?(?=education|skills|projects|$)/i)?.[0] || text;
+    const experienceSection = cleanText.match(/(?:experience|employment|work\s+history)[\s\S]*?(?=education|skills|projects|$)/i)?.[0] || cleanText;
     
     for (const pattern of experiencePatterns) {
       let match;
       while ((match = pattern.exec(experienceSection)) !== null) {
-        if (match[1] && match[2] && match[3]) {
+        if (match[1] && match[2]) {
           resumeData.experience.push({
             title: match[1].trim(),
             company: match[2].trim(),
-            duration: match[3].trim(),
-            description: match[4] ? match[4].trim() : 'Experience details extracted from resume.'
+            duration: match[3] ? match[3].trim() : 'Duration not specified',
+            description: match[4] ? match[4].trim().replace(/\s+/g, ' ') : 'Experience details extracted from resume.'
           });
         }
       }
     }
 
-    // Extract education (improved pattern)
+    // Extract education (significantly improved)
     const educationPatterns = [
-      /([^•\n]+?)\s*[-–—]\s*([^•\n]+?)\s*[-–—]\s*([^•\n]+?)(?:\n.*?)*?(?=\n\s*(?:[A-Z][^a-z]|$))/g,
-      /(.*?)\n(.*?)\n(.*?)\n(?=\n\s*\n)/g,
-      /(Bachelor|Master|PhD|B\.S\.|B\.A\.|M\.S\.|M\.A\.|Ph\.D\.).*?(University|College|Institute|School).*?(\d{4})/gi
+      /(Bachelor|Master|PhD|B\.?Tech|B\.?E|M\.?Tech|M\.?E|B\.?S\.?|B\.?A\.?|M\.?S\.?|M\.?A\.?|Ph\.?D\.?|Diploma|Certificate)([^,\n]*?)(?:from|at)?\s*([^,\n]*?(?:University|College|Institute|School|IIT|NIT|BITS)[^,\n]*?)(?:,?\s*(\d{4}(?:\s*[-–—]\s*\d{4})?|\d{4}\s*[-–—]\s*(?:Present|Current)))?/gi,
+      /(?:Degree|Education):\s*([^,\n]+),?\s*(?:Institution|University|College):\s*([^,\n]+),?\s*(?:Year|Period):\s*([^,\n]+)/gi,
+      /([^•\n]+?)\s*[-–—|]\s*([^•\n]*?(?:University|College|Institute|School)[^•\n]*?)\s*[-–—|]\s*([^•\n]+?)(?:\n.*?)*?(?=\n\s*(?:[A-Z][^a-z]|$))/gm
     ];
     
-    const educationSection = text.match(/education[\s\S]*?(?=experience|skills|projects|$)/i)?.[0] || text;
+    const educationSection = cleanText.match(/(?:education|academic|qualification)[\s\S]*?(?=experience|skills|projects|$)/i)?.[0] || cleanText;
     
     for (const pattern of educationPatterns) {
       let match;
       while ((match = pattern.exec(educationSection)) !== null) {
-        if (match[1] && match[2]) {
+        if (match[1] && (match[2] || match[3])) {
           resumeData.education.push({
-            degree: match[1].trim(),
-            institution: match[2].trim(),
-            year: match[3] ? match[3].trim() : '',
-            gpa: match[4] ? match[4].trim() : ''
+            degree: match[1].trim() + (match[2] ? ' ' + match[2].trim() : ''),
+            institution: match[3] ? match[3].trim() : (match[2] || '').trim(),
+            year: match[4] ? match[4].trim() : (match[3] && /\d{4}/.test(match[3]) ? match[3].trim() : ''),
+            gpa: ''
           });
         }
       }
     }
+    
+    // Extract projects (new addition)
+    const projectPatterns = [
+      /(?:Projects?|Portfolio)[\s\S]*?(?=Experience|Education|Skills|$)/i
+    ];
+    
+    const projectSection = cleanText.match(projectPatterns[0]);
+    if (projectSection) {
+      const projectText = projectSection[0];
+      const projectMatches = projectText.match(/([A-Z][^•\n]{10,100})(?:\n([^•\n]{20,200}))?/g);
+      
+      if (projectMatches) {
+        projectMatches.slice(0, 5).forEach(match => {
+          const lines = match.split('\n');
+          if (lines[0] && lines[0].length > 10) {
+            resumeData.projects = resumeData.projects || [];
+            resumeData.projects.push({
+              name: lines[0].trim(),
+              description: lines[1] ? lines[1].trim() : 'Project details extracted from resume',
+              technologies: 'Various technologies',
+              link: ''
+            });
+          }
+        });
+      }
+    }
+    
+    console.log('Parsed resume data:', resumeData);
 
     return resumeData;
   };
@@ -522,27 +593,35 @@ const ResumeImporter: React.FC<ResumeImporterProps> = ({ onDataImported, onClose
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                   <div>
                     <span className="font-medium text-gray-700 dark:text-gray-300">Name:</span>
-                    <span className="ml-2 text-gray-900 dark:text-white">{extractedData.personalInfo.name || 'Not found'}</span>
+                    <span className="ml-2 text-gray-900 dark:text-white">{extractedData.personalInfo.name || '❌ Not found'}</span>
                   </div>
                   <div>
                     <span className="font-medium text-gray-700 dark:text-gray-300">Email:</span>
-                    <span className="ml-2 text-gray-900 dark:text-white">{extractedData.personalInfo.email || 'Not found'}</span>
+                    <span className="ml-2 text-gray-900 dark:text-white">{extractedData.personalInfo.email || '❌ Not found'}</span>
                   </div>
                   <div>
                     <span className="font-medium text-gray-700 dark:text-gray-300">Phone:</span>
-                    <span className="ml-2 text-gray-900 dark:text-white">{extractedData.personalInfo.phone || 'Not found'}</span>
+                    <span className="ml-2 text-gray-900 dark:text-white">{extractedData.personalInfo.phone || '❌ Not found'}</span>
                   </div>
                   <div>
                     <span className="font-medium text-gray-700 dark:text-gray-300">Skills:</span>
-                    <span className="ml-2 text-gray-900 dark:text-white">{extractedData.skills.length} skills found</span>
+                    <span className="ml-2 text-gray-900 dark:text-white">✅ {extractedData.skills.length} skills found</span>
                   </div>
                   <div>
                     <span className="font-medium text-gray-700 dark:text-gray-300">Experience:</span>
-                    <span className="ml-2 text-gray-900 dark:text-white">{extractedData.experience.length} entries</span>
+                    <span className="ml-2 text-gray-900 dark:text-white">✅ {extractedData.experience.length} entries</span>
                   </div>
                   <div>
                     <span className="font-medium text-gray-700 dark:text-gray-300">Education:</span>
-                    <span className="ml-2 text-gray-900 dark:text-white">{extractedData.education.length} entries</span>
+                    <span className="ml-2 text-gray-900 dark:text-white">✅ {extractedData.education.length} entries</span>
+                  </div>
+                  <div>
+                    <span className="font-medium text-gray-700 dark:text-gray-300">Projects:</span>
+                    <span className="ml-2 text-gray-900 dark:text-white">✅ {(extractedData.projects || []).length} projects</span>
+                  </div>
+                  <div>
+                    <span className="font-medium text-gray-700 dark:text-gray-300">Summary:</span>
+                    <span className="ml-2 text-gray-900 dark:text-white">{extractedData.personalInfo.summary ? '✅ Found' : '❌ Not found'}</span>
                   </div>
                 </div>
               </div>
@@ -555,7 +634,6 @@ const ResumeImporter: React.FC<ResumeImporterProps> = ({ onDataImported, onClose
                     onDataImported(extractedData);
                     onClose();
                   }}
-                  className="flex-1 bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
                 >
                   Use Extracted Data
                 </motion.button>
